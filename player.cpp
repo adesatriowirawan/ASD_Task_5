@@ -16,6 +16,7 @@ void printInfo(List L) {
         cout<<"name    : "<<info(Q).name<<endl
             <<"ID      : "<<info(Q).ID<<endl
             <<"location: "<<info(Q).location<<endl;
+                cout<<endl;
         Q = next(Q);
     } while(Q!=first(L));
     cout<<"==============================================="<<endl;
@@ -42,7 +43,15 @@ void shuffleList(List &L) {
     //-------------your code here-------------
 
         cout<<"UNDER MAIN TENIS"<<endl;
+         address addr = first(L);
+            address place;
+            int repeat = randomInt(10);
+            for (int i= 0; i < repeat; i++) {
+                addr = next(addr);
 
+            }
+            deleteAfter(L, addr, place);
+            insertFirst(L, place);
     //----------------------------------------
 }
 
@@ -54,7 +63,12 @@ void sortListByID(List &L) {
     //-------------your code here-------------
 
         cout<<"UNDER MAIN TENIS"<<endl;
-
+    address addr = first(L);
+        address place;
+        while (addr->info.ID > addr->next->info.ID) {
+            deleteAfter(L, prev(addr), place);
+            insertAfter(L, next(addr), place);
+	}
     //----------------------------------------
 
 }
@@ -67,6 +81,15 @@ void playRepeat(List &L, int n) {
     //-------------your code here-------------
 
         cout<<"UNDER MAIN TENIS"<<endl;
+        address P=first(L);
+    do {
+        int x=n;
+        for (x;x>0;x--) {
+            playMusic(P);
+        }
+        P=next(P);
+    }
+    while (P!=first(L));
 
     //----------------------------------------
 }
@@ -81,6 +104,21 @@ void deleteMusicByID(List &L, infotype x) {
     //-------------your code here-------------
 
         cout<<"UNDER MAIN TENIS"<<endl;
+        address P,Prec;
+        if (first(L)!=NULL) {
+            P=findElmByID(L,x);
+            if (P==NULL) {
+                cout<<"music ID not found"<<endl;
+            } else if (P==first(L)) {
+                deleteFirst(L,P);
+            } else if (P==last(L)) {
+                deleteLast(L,P);
+            } else {
+               Prec=prev(P);
+                deleteAfter(L,Prec,P);
+            }
+        }
+       deallocate(P);
 
     //----------------------------------------
 
